@@ -29,8 +29,12 @@ public:
 
     // TODO: Implement the collision detection
     [[nodiscard]] bool IfCollides(const std::shared_ptr<Character>& other) const {
-        (void) other;
-        return false;
+        glm::vec2 sizeA = GetScaledSize();
+        glm::vec2 sizeB = other->GetScaledSize();
+        glm::vec2 posA  = GetPosition();
+        glm::vec2 posB  = other->GetPosition();
+        return std::abs(posA.x - posB.x) < (sizeA.x + sizeB.x) / 2.0f &&
+               std::abs(posA.y - posB.y) < (sizeA.y + sizeB.y) / 2.0f;
     }
 
     // TODO: Add and implement more methods and properties as needed to finish Giraffe Adventure.
